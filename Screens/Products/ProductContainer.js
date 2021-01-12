@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ActivityIndicator, FlatList, Dimensions, ScrollView } from 'react-native';
 import { Container, Header, Icon, Item, Input, Text } from 'native-base';
 
-import { ProductList } from './ProductList';
+import ProductList from './ProductList';
 import { SearchedProduct  } from './SearchedProduct ';
 import { Banner } from './../../Shared/Banner';
 import { CategoryFilter } from './CategoryFilter';

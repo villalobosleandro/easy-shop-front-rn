@@ -1,11 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, View, Dimensions, Text } from 'react-native';
 
-import { ProductCard } from './ProductCard';
+import ProductCard from './ProductCard';
 
 var { width, height } = Dimensions.get("window");
 
-export const ProductList = props => {
+const ProductList = props => {
   const { item } = props;
 
   return(
@@ -19,3 +19,5 @@ export const ProductList = props => {
     </TouchableOpacity>
   )
 }
+
+export default ProductList;
