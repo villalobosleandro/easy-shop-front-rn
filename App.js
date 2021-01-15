@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Header } from './Shared/Header';
 import { Main } from './Navigators/Main';
 import store from './Redux/store';
+import Auth from "./Context/store/Auth";
 
 LogBox.ignoreAllLogs(true);
 

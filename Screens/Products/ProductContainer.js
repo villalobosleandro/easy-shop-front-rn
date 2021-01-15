@@ -3,7 +3,7 @@ import { View, StyleSheet, ActivityIndicator, FlatList, Dimensions, ScrollView }
 import { Container, Header, Icon, Item, Input, Text } from 'native-base';
 
 import ProductList from './ProductList';
-import { SearchedProduct  } from './SearchedProduct ';
+import { SearchedProduct } from './SearchedProduct ';
 import { Banner } from './../../Shared/Banner';
 import { CategoryFilter } from './CategoryFilter';
 
@@ -30,7 +30,7 @@ const ProductContainer = (props) => {
     setActive(-1);
     setInitialState(data);
 
-    return() => {
+    return () => {
       setProducts([])
       setProductsFiltered([])
       setFocus()
@@ -67,19 +67,19 @@ const ProductContainer = (props) => {
     }
   }
 
-  
+
   return (
     <Container>
       <Header searchBar rounded>
         <Item>
-          <Icon name='ios-search'/>
+          <Icon name='ios-search' />
           <Input
             placeholder="Search"
             onFocus={openList}
             onChangeText={(text) => searchProduct(text)}
           />
           {focus ? (
-            <Icon onPress={closeSearch} name='ios-close'/>
+            <Icon onPress={closeSearch} name='ios-close' />
           ) : null}
         </Item>
       </Header>
@@ -88,11 +88,11 @@ const ProductContainer = (props) => {
           productsFiltered={productsFiltered}
           navigation={props.navigation}
         />
-      ): (
-        <ScrollView>
-          <View style={styles.container}>
+      ) : (
+          <ScrollView>
+            <View>
               <View>
-                <Banner/>
+                <Banner />
               </View>
 
               <View>
@@ -107,37 +107,37 @@ const ProductContainer = (props) => {
               {
                 productsCtg.length > 0 ? (
                   <View style={styles.listContainer}>
-                    {productsCtg. map((item) => {
-                      return(
+                    {productsCtg.map((item) => {
+                      return (
                         <ProductList
                           navigation={props.navigation}
-                          key={item._id.$oid}
+                          key={item.name}
                           item={item}
                         />
                       )
                     })}
                   </View>
                 ) : (
-                  <View style={[styles.center, {height: height / 2}]}>
-                    <Text>No products found</Text>
-                  </View>
-                )
+                    <View style={[styles.center, { height: height / 2 }]}>
+                      <Text>No products found</Text>
+                    </View>
+                  )
               }
-              
+
             </View>
-        </ScrollView>
-      )}
-      
+          </ScrollView>
+        )}
+
     </Container>
-    
+
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flexWrap: "wrap",
-    // backgroundColor: "gainsboro",
-    flex: 1
+    flexWrap: "wrap",
+    backgroundColor: "gainsboro",
+    // flex: 1
   },
   listContainer: {
     height: height,
@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
     backgroundColor: "gainsboro",
   },
   center: {
-      justifyContent: 'center',
-      alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

@@ -42,12 +42,13 @@ const ProductCard = (props) => {
             medium
             onPress={() => {
               props.addItemToCart(props),
-                Toast.show({
-                  topOffset: 60,
-                  type: "success",
-                  text1: `${name} added to Cart`,
-                  text2: "Go to your cart to complete order"
-                })
+                // Toast.show({
+                //   topOffset: 60,
+                //   type: "success",
+                //   text1: `${name} added to Cart`,
+                //   text2: "Go to your cart to complete order"
+                // })
+                console.log('agregado desde el home');
             }}
           >
             <Text style={{ color: "white" }}>Add</Text>
