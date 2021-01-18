@@ -2,6 +2,7 @@ import React from 'react';
 import { LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
+import Toast from 'react-native-toast-message';
 
 import { Header } from './Shared/Header';
 import { Main } from './Navigators/Main';
@@ -16,6 +17,7 @@ export default function App() {
       <NavigationContainer>
         <Header />
         <Main />
+        <Toast ref={(ref) => Toast.setRef(ref)} />
       </NavigationContainer>
     </Provider>
   );

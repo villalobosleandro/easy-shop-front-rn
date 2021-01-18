@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native';
 import { Left, Right, Container, H1 } from 'native-base';
-// import Toast from 'react-native-toast-message';
+import Toast from 'react-native-toast-message';
 import EasyButton from '../../Shared/StyledComponents/EasyButton'
 import TrafficLight from '../../Shared/StyledComponents/TrafficLight'
 
@@ -68,8 +68,14 @@ const SingleProduct = (props) => {
                    <EasyButton 
                    primary
                    medium
-                   onPress={() => {props.addItemToCart(item),
-                        console.log('agregado');
+                   onPress={() => {
+                       props.addItemToCart(item),
+                       Toast.show({
+                        topOffset: 60,
+                        type: "success",
+                        text1: `${item.name} added to Cart`,
+                        text2: "Go to your cart to complete order"
+                      })
                 }}
                    >
                        <Text style={{ color: 'white'}}>Add</Text>

@@ -12,7 +12,6 @@ import EasyButton from "../../Shared/StyledComponents/EasyButton"
 import { connect } from 'react-redux'
 
 import * as actions from '../../Redux/Actions/cartActions';
-import baseUrl from './../../assets/common/baseUrl';
 
 var { width } = Dimensions.get("window");
 
@@ -44,13 +43,12 @@ const ProductCard = (props) => {
             medium
             onPress={() => {
               props.addItemToCart(props),
-                // Toast.show({
-                //   topOffset: 60,
-                //   type: "success",
-                //   text1: `${name} added to Cart`,
-                //   text2: "Go to your cart to complete order"
-                // })
-                console.log('agregado desde el home');
+                Toast.show({
+                  topOffset: 60,
+                  type: "success",
+                  text1: `${name} added to Cart`,
+                  text2: "Go to your cart to complete order"
+                })
             }}
           >
             <Text style={{ color: "white" }}>Add</Text>
