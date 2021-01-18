@@ -10,7 +10,9 @@ import {
 import Toast from 'react-native-toast-message'
 import EasyButton from "../../Shared/StyledComponents/EasyButton"
 import { connect } from 'react-redux'
+
 import * as actions from '../../Redux/Actions/cartActions';
+import baseUrl from './../../assets/common/baseUrl';
 
 var { width } = Dimensions.get("window");
 
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     height: width / 1.7,
     padding: 10,
     borderRadius: 10,
-    marginTop: 55,
+    marginTop: 20,
     marginBottom: 5,
     marginLeft: 10,
     alignItems: 'center',

@@ -58,8 +58,6 @@ const Checkout = (props) => {
                 zip,
             }
 
-            console.log('aaaaaaaaa ', order);
-
             props.navigation.navigate("Payment", { order: order })
         // }
 
