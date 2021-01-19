@@ -1,12 +1,12 @@
 import jwt_decode from "jwt-decode"
 import AsyncStorage from "@react-native-community/async-storage"
 import Toast from "react-native-toast-message"
-// import baseURL from "../../assets/common/baseUrl"
-const baseURL = '192.168.0.181:3000';
 
+import baseURL from "../../assets/common/baseUrl";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 export const loginUser = (user, dispatch) => {
+    // console.log('user => ', user);
     fetch(`${baseURL}users/login`, {
         method: "POST",
         body: JSON.stringify(user),
