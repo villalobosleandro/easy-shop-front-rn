@@ -292,6 +292,7 @@ const ProductForm = (props) => {
           }
         })
         .catch((error) => {
+          console.log('error => ', JSON.stringify(error));
           Toast.show({
             topOffset: 60,
             type: "error",
