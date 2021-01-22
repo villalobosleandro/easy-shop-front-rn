@@ -2,8 +2,11 @@ import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Button } from 'react-native';
 import { Text, Left, Right, ListItem, Thumbnail, Body } from 'native-base';
 import { connect } from 'react-redux';
+import Toast from 'react-native-toast-message';
+import axios from "axios"
 
 import * as actions from '../../../Redux/Actions/cartActions';
+import baseURL from "../../../assets/common/baseUrl"
 
 var { width, height } = Dimensions.get('window');
 
@@ -11,10 +14,33 @@ const Confirm = (props) => {
     const finalOrder = props.route.params;
 
     const confirmOrder = () => {
-        setTimeout(() => {
-            props.clearCart();
-            props.navigation.navigate('Cart');
-        }, 500)
+
+        const order = finalOrder.order.order;
+
+        axios
+            .post(`${baseURL}orders`, order)
+            .then((res) => {
+                if (res.status == 200 || res.status == 201) {
+                    Toast.show({
+                        topOffset: 60,
+                        type: "success",
+                        text1: "Order Completed",
+                        text2: "",
+                    })
+                    setTimeout(() => {
+                        props.clearCart();
+                        props.navigation.navigate("Cart")
+                    }, 500)
+                }
+            })
+            .catch((error) => {
+                Toast.show({
+                    topOffset: 60,
+                    type: "error",
+                    text1: "Something went wrong",
+                    text2: "Please try again",
+                })
+            })
     }
 
     return (
@@ -101,7 +127,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = (dispatch) => {
-    return{
+    return {
         clearCart: () => dispatch(actions.clearCart())
     }
 }

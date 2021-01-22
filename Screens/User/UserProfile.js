@@ -8,10 +8,12 @@ import axios from 'axios';
 import baseURL from './../../assets/common/baseUrl';
 import AuthGlobal from './../../Context/store/AuthGlobal';
 import { logoutUser } from './../../Context/actions/Auth.actions';
+import OrderCard from "../../Shared/OrderCard"
 
 const UserProfile = (props) => {
   const context = useContext(AuthGlobal);
   const [userProfile, setUserProfile] = useState();
+  const [orders, setOrders] = useState()
 
   useFocusEffect(
     useCallback(() => {
@@ -29,26 +31,28 @@ const UserProfile = (props) => {
               headers: { Authorization: `Bearer ${res}` },
             })
             .then((user) => {
-              // console.log('user => ', user);
+              // console.log('user => ', user.data);
               setUserProfile(user.data)
             })
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.log('errorrrrr => ', error))
 
-      // axios
-      //   .get(`${baseURL}orders`)
-      //   .then((x) => {
-      //     const data = x.data;
-      //     const userOrders = data.filter(
-      //       (order) => order.user._id === context.stateUser.user.sub
-      //     );
-      //     setOrders(userOrders);
-      //   })
-      //   .catch((error) => console.log(error))
+      axios
+        .get(`${baseURL}orders`)
+        .then((x) => {
+          const data = x.data;
+          console.log('data => ', data);
+          const userOrders = data.filter(
+            (order) => order.user._id === context.stateUser.user.userId
+          );
+          console.log('userOrders => ', userOrders);
+          setOrders(userOrders);
+        })
+        .catch((error) => console.log(error))
 
       return () => {
         setUserProfile();
-        // setOrders();
+        setOrders();
       }
 
     }, [context.stateUser.isAuthenticated]))
@@ -56,27 +60,36 @@ const UserProfile = (props) => {
   return (
     <Container style={styles.container}>
       <ScrollView contentContainerStyle={styles.subContainer}>
-        <Text style={{fontSize: 30}}>
+        <Text style={{ fontSize: 30 }}>
           {userProfile ? userProfile.name : ""}
         </Text>
-        <View style={{margin: 20}}>
-          <Text style={{margin: 10}}>
+        <View style={{ marginTop: 20 }}>
+          <Text style={{ margin: 10 }}>
             Email: {userProfile ? userProfile.email : ""}
           </Text>
-
-          <Text style={{margin: 10}}>
+          <Text style={{ margin: 10 }}>
             Phone: {userProfile ? userProfile.phone : ""}
           </Text>
         </View>
-
-        <View style={{marginTop: 80}}>
-          <Button
-            title={'Sign Out'}
-            onPress={() => [
-              AsyncStorage.removeItem('jwt'),
-              logoutUser(context.dispatch)
-            ]}
-          />
+        <View style={{ marginTop: 80 }}>
+          <Button title={"Sign Out"} onPress={() => [
+            AsyncStorage.removeItem("jwt"),
+            logoutUser(context.dispatch)
+          ]} />
+        </View>
+        <View style={styles.order}>
+          <Text style={{ fontSize: 20 }}>My Orders</Text>
+          <View>
+            {orders ? (
+              orders.map((x) => {
+                return <OrderCard key={x.id} {...x} />;
+              })
+            ) : (
+                <View style={styles.order}>
+                  <Text>You have no orders</Text>
+                </View>
+              )}
+          </View>
         </View>
       </ScrollView>
     </Container>
@@ -91,6 +104,11 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: 'center',
     marginTop: 60
+  },
+  order: {
+    marginTop: 20,
+    alignItems: "center",
+    marginBottom: 60
   }
 })
 

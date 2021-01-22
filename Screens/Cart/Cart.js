@@ -75,7 +75,7 @@ const Cart = (props) => {
               </EasyButton>
             </Right>
             <Right>
-              {/* {context.stateUser.isAuthenticated ? (*/}
+              {context.stateUser.isAuthenticated ? (
               <EasyButton
                 primary
                 medium
@@ -83,7 +83,7 @@ const Cart = (props) => {
               >
                 <Text style={{ color: 'white' }}>Checkout</Text>
               </EasyButton>
-              {/*) : (
+              ) : (
                 <EasyButton
                   secondary
                   medium
@@ -91,7 +91,7 @@ const Cart = (props) => {
                 >
                 <Text style={{ color: 'white' }}>Login</Text>
                 </EasyButton>
-              )} */}
+              )}
 
             </Right>
           </View>
