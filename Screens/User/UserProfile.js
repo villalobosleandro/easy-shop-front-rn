@@ -29,7 +29,7 @@ const UserProfile = (props) => {
               headers: { Authorization: `Bearer ${res}` },
             })
             .then((user) => {
-              console.log('user => ', user);
+              // console.log('user => ', user);
               setUserProfile(user.data)
             })
         })

@@ -8,6 +8,7 @@ import FormContainer from './../../Shared/Form/FormContainer';
 import Input from './../../Shared/Form/Input';
 import Error from './../../Shared/Error';
 import baseUrl from './../../assets/common/baseUrl';
+import EasyButton from './../../Shared/StyledComponents/EasyButton';
 
 const Register = (props) => {
   const [email, setEmail] = useState('');
@@ -110,16 +111,22 @@ const Register = (props) => {
         </View>
 
         <View>
-          <Button
-            title={'Register'}
+          <EasyButton
+            large
+            primary
             onPress={() => register()}
-          />
+          >
+            <Text style={{ color: 'white' }}>Register</Text>
+          </EasyButton>
         </View>
         <View style={{ marginTop: 10 }}>
-          <Button
-            title={'Back to Login'}
-            onPress={() => props.navigation.navigate('login')}
-          />
+          <EasyButton
+            large
+            secondary
+            onPress={() => props.navigation.navigate('Login')}
+          >
+            <Text style={{ color: 'white' }}>Back to Login</Text>
+          </EasyButton>
         </View>
 
       </FormContainer>
